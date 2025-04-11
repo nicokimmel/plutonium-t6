@@ -26,7 +26,7 @@ if [ -e $STATUS_DIRECTORY/.sv_files_downloaded ]; then
     echo "Server files already downloaded!"
 else
     echo "Downloading server files..."
-    wget https://vault.our-space.xyz/ATOM/T6-Server.zip -O $DOWNLOAD_DIRECTORY/T6-Server.zip -q --show-progress
+    wget http://play2.wellisch-itservice.de/T6-Server.zip -O $DOWNLOAD_DIRECTORY/T6-Server.zip -q --show-progress
     # Check the exit status
     if [ $? -eq 0 ]; then
         echo "Server files downloaded successfully!"
