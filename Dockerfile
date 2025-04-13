@@ -6,6 +6,7 @@ LABEL author="João Carlos Palma"
 ################################################################################
 #                             Environment Variables                            #
 ################################################################################
+
 ENV PLUTONIUM_DIRECTORY="/t6server/plutonium"
 ENV SERVER_DIRECTORY="/t6server/server"
 ENV IW4ADMIN_DIRECTORY="/t6server/admin"
@@ -28,6 +29,7 @@ ENV SERVER_MAP_ROTATION=""
 ENV SERVER_PASSWORD=""
 
 ENV ADMIN_PORT="1624"
+
 
 ################################################################################
 #                            Container Provisioning                            #
@@ -55,9 +57,8 @@ RUN apt-get install -y \
 	xvfb \
 	aria2 \
 	apt-transport-https \
-	dotnet6 \
-	dotnet-sdk-6.0 \
-	aspnetcore-runtime-6.0 \
+	dotnet-sdk-8.0 \
+	dotnet-runtime-8.0 \
 	avahi-daemon \
 	avahi-utils
 
@@ -82,20 +83,6 @@ RUN bash /t6server/install_wine.sh  && rm /t6server/install_wine.sh
 COPY resources/check_updater.sh /t6server/check_updater.sh
 #Make sure the script is executable by anyone
 RUN chmod ugo+x /t6server/check_updater.sh
-
-
-################################################################################
-#                             Installing IW4MAdmin                             #
-################################################################################
-
-# Installing dotnet
-RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-  dpkg -i packages-microsoft-prod.deb && \
-  rm packages-microsoft-prod.deb
-
-
-################################################################################
-
 
 
 # Prepare server launch
