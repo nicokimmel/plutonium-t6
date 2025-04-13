@@ -349,6 +349,13 @@ else
     exit 1
 fi
 
+# Start last map from map rotation
+if [ -n "$SERVER_MAP_ROTATION" ]; then
+    sleep 5
+    LAST_MAP=$(echo "$SERVER_MAP_ROTATION" | sed -n 's/^.*map \([^ ]*\).*/\1/p')
+    screen -S plutonium-server -p 0 -X stuff "map $LAST_MAP$(printf \\r)"
+fi
+
 # Launch IW4Admin
 if [ -e $IW4ADMIN_DIRECTORY/StartIW4MAdmin.sh ]; then
     echo "IW4Admin files exist!"
